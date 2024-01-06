@@ -3,9 +3,14 @@ import UserReducer from "./UserReducer";
 import UserContext from "./UserContext";
 import PropTypes from "prop-types";
 import { useEffect } from "react"
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth"; //? LLamamos a las funciones de autentucacion de firebase
-//?  createUserWithEmailAndPassword = creat un usuario nuevo en la base de datos de firebase, signInWithEmailAndPassword = hace la funcion de login si existe un usuario registrafo con el mismo correo y password, onAuthStateChanged = crea un estado en el cual se mantienen los datos del inicio de secion y el cerre de sesion
 import { auth } from "../firebaseConfig";
+import { createUserWithEmailAndPassword, 
+		signInWithEmailAndPassword, 
+		onAuthStateChanged, signOut, 
+		GoogleAuthProvider,
+		signInWithPopup } from "firebase/auth";
+ //? LLamamos a las funciones de autentucacion de firebase
+//?  createUserWithEmailAndPassword = creat un usuario nuevo en la base de datos de firebase, signInWithEmailAndPassword = hace la funcion de login si existe un usuario registrafo con el mismo correo y password, onAuthStateChanged = crea un estado en el cual se mantienen los datos del inicio de secion y el cerre de sesion
 
 const UseState = ({ children }) => {
 	//guardamos el esto del login en un estado para saber si este esta o no logeado
@@ -25,11 +30,16 @@ const UseState = ({ children }) => {
 	
 	//?creamos una funcion para actualizar el payload
 	const loginAcces = ()=> dispatch({ type: 'LOGIN'})
-	
+
 	const loginNotAcces = ()=> dispatch({ type: 'LOGOUT'})
 
 	//? Creamos la funcion para cerrar secion es decir un logout
 	const logout = ()=> signOut(auth)
+
+	const loginGoogle = ()=> {
+		const loginWithGoogle = new GoogleAuthProvider();
+		return signInWithPopup(auth, loginWithGoogle)
+	}
 
 	//?usamos el reducer oara mantener las acciones
 	const [state, dispatch] = useReducer(UserReducer, initialState);
@@ -44,7 +54,7 @@ const UseState = ({ children }) => {
 	},[])
 
 	return (
-		<UserContext.Provider value={{ state, dispatch, singUp, login, loginAcces, user, logout, loginNotAcces }}>
+		<UserContext.Provider value={{ state, dispatch, singUp, login, loginAcces, user, logout, loginNotAcces, loginGoogle }}>
 			{children}
 		</UserContext.Provider>
 	);

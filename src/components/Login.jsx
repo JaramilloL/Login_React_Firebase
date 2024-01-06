@@ -4,10 +4,17 @@ import UserContext from "../context/UserContext"; //*impoeramos el estado global
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+	
 	//usamos la navegacion para redirijir al usuario
 	const navigateUser = useNavigate();
 	//? Resivimos la funcion de sigup del contexto
-	const { login, loginAcces } = useContext(UserContext);
+	const { login, loginAcces, loginGoogle } = useContext(UserContext);
+
+	//funcion para ejecutar el evento del inicio de sesion con google
+	const handleGoogleLogin = async ()=>{
+		await loginGoogle()
+		navigateUser('/home')
+	}
 
 
 	//? usamos react hook form para evaluar los estado de cada input es decir si estos son campos requeridos o no
@@ -72,7 +79,8 @@ const Login = () => {
 				<input type="submit" value="Login" />
 				
 			</form>
-			
+			{ /**Creamos un boton para el inicio de sesion mediante google */ }
+			<button onClick={handleGoogleLogin}>Google</button>
 		</div>
 	);
 };
