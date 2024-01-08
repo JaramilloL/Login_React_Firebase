@@ -1,3 +1,19 @@
 *{
   box-sizing: border-box;
 }
+.dark-glass-container {
+  background: rgba(0, 0, 0, 0.1); /* Color negro translúcido */
+  backdrop-filter: blur(10px); /* Aplica un efecto de desenfoque */
+  border-radius: 10px;
+  padding: 20px; /* Puedes ajustar el relleno según tus necesidades */
+  box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1); /* Sombra para resaltar el formulario */
+  color: white; /* Color del texto, ajusta según tus necesidades */
+}
+.bg-google {
+  background-color: #DB4437;
+  color: white; /* Ajusta el color del texto según sea necesario */
+}
+
+.bg-google:hover {
+  background-color: #C53A2B; /* Cambia el color al pasar el ratón por encima */
+}

@@ -21,7 +21,6 @@ const PageHome = () => {
     {
       state.isAuthenticated ? (
         <div>
-        <p>LOGEADO CON EXITO</p>
         <p>Bienvenido: {user.email}</p>
         </div>
       ):

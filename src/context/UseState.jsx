@@ -8,7 +8,8 @@ import { createUserWithEmailAndPassword,
 		signInWithEmailAndPassword, 
 		onAuthStateChanged, signOut, 
 		GoogleAuthProvider,
-		signInWithPopup } from "firebase/auth";
+		signInWithPopup,
+		sendPasswordResetEmail } from "firebase/auth";
  //? LLamamos a las funciones de autentucacion de firebase
 //?  createUserWithEmailAndPassword = creat un usuario nuevo en la base de datos de firebase, signInWithEmailAndPassword = hace la funcion de login si existe un usuario registrafo con el mismo correo y password, onAuthStateChanged = crea un estado en el cual se mantienen los datos del inicio de secion y el cerre de sesion
 
@@ -41,6 +42,8 @@ const UseState = ({ children }) => {
 		return signInWithPopup(auth, loginWithGoogle)
 	}
 
+	const resetPassword = (email)=> sendPasswordResetEmail(auth, email)
+
 	//?usamos el reducer oara mantener las acciones
 	const [state, dispatch] = useReducer(UserReducer, initialState);
 
@@ -48,13 +51,14 @@ const UseState = ({ children }) => {
 	useEffect(()=> {
 		// aqui ejecutamos el estado del usuario en cuanto a su logeo
 		//el segundo parametro es un objeto que nos regresa
-		onAuthStateChanged(auth, currectUser => {
+		onAuthStateChanged(auth, (currectUser) => {
+			console.log(currectUser)
 			setUser(currectUser);
 		});
 	},[])
 
 	return (
-		<UserContext.Provider value={{ state, dispatch, singUp, login, loginAcces, user, logout, loginNotAcces, loginGoogle }}>
+		<UserContext.Provider value={{ state, dispatch, singUp, login, loginAcces, user, logout, loginNotAcces, loginGoogle, resetPassword }}>
 			{children}
 		</UserContext.Provider>
 	);
