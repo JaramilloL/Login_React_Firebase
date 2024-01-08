@@ -17,3 +17,6 @@
 .bg-google:hover {
   background-color: #C53A2B; /* Cambia el color al pasar el ratón por encima */
 }
+.image-size{
+  width: 5rem;
+}

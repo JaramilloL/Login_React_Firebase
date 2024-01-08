@@ -1,36 +1,38 @@
-import { useContext } from "react"
-import UserContext from "../context/UserContext"
+import { useContext } from "react";
+import UserContext from "../context/UserContext";
 import { Navigate, useNavigate } from "react-router-dom";
+import Profile from "../components/Profile";
+import ProfileNotGoogle from "../components/ProfileNotGoogle";
 
 const PageHome = () => {
-  const userNavigate = useNavigate()
+  const userNavigate = useNavigate();
   //state es el estado del reducer donde verofica si se logeo correctamente
   //user es el estado de quien es el usuario logeado
   const { state, user, logout, loginNotAcces } = useContext(UserContext);
 
-  const handleOut = async()=>{
-    loginNotAcces()
+  const handleOut = async () => {
+    loginNotAcces();
     //cerramos secion mediante un boton
-    await logout()
-    userNavigate('/login')
-  }
+    await logout();
+    userNavigate("/login");
+  };
 
-  console.log(user)
+  console.log(user);
   return (
     <div>
-    {
-      state.isAuthenticated ? (
+      {state.isAuthenticated ? (
         <div>
-        <p>Bienvenido: {user.email}</p>
+          {user.displayName ? (
+            <Profile user={user} handleOut={handleOut}/>
+          ) : (
+            <ProfileNotGoogle user={user} handleOut={handleOut}/>
+          )}
         </div>
-      ):
-      (
-        <Navigate to={'/login'}/>
-      )
-    }
-    <button onClick={handleOut}>LogOut</button>
+      ) : (
+        <Navigate to={"/login"} />
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default PageHome
+export default PageHome;
