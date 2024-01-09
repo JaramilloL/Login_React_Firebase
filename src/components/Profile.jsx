@@ -8,10 +8,10 @@ const Profile = ({ user, handleOut }) => {
           <p className="text-primary">
             <strong>Welcome :</strong> {user.displayName}
           </p>
-          <img src={user.photoURL} className="rounded-circle image-size" />
+          <img src={user.photoURL} className="rounded-circle image-size m-1" />
         </div>
-        <div className="d-flex justify-content-end align-items-center">
-          <button onClick={handleOut} className="btn btn-danger">
+        <div className="d-flex justify-content-end m-1">
+          <button onClick={handleOut} className="btn btn-danger size-button m-1">
             LogOut
           </button>
         </div>

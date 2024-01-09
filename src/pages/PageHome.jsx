@@ -27,7 +27,7 @@ const PageHome = () => {
           {user.displayName ? (
             <div>
               <Profile user={user} handleOut={handleOut} />
-              <div className="d-flex justify-content-between align-items-center">
+              <div className="d-flex align-items-center">
               <Task />
               <TaskList />
               </div>

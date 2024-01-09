@@ -2,7 +2,7 @@
 
 const Task = () => {
   return (
-    <div className="form-control w-50">
+    <div className="form-control w-50 m-2">
       <form className="w-100  d-flex justify-content-evenly">
         <div className="form-floating mb-3">
           <input

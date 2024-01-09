@@ -20,3 +20,8 @@
 .image-size{
   width: 5rem;
 }
+.size-button{
+  width: 4rem;
+  font-size: .8rem;
+  display: flex;
+}
