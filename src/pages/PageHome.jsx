@@ -3,6 +3,8 @@ import UserContext from "../context/UserContext";
 import { Navigate, useNavigate } from "react-router-dom";
 import Profile from "../components/Profile";
 import ProfileNotGoogle from "../components/ProfileNotGoogle";
+import Task from "../components/Task";
+import TaskList from "../components/TaskList";
 
 const PageHome = () => {
   const userNavigate = useNavigate();
@@ -23,9 +25,21 @@ const PageHome = () => {
       {state.isAuthenticated ? (
         <div>
           {user.displayName ? (
-            <Profile user={user} handleOut={handleOut}/>
+            <div>
+              <Profile user={user} handleOut={handleOut} />
+              <div className="d-flex justify-content-between align-items-center">
+              <Task />
+              <TaskList />
+              </div>
+            </div>
           ) : (
-            <ProfileNotGoogle user={user} handleOut={handleOut}/>
+            <div>
+              <ProfileNotGoogle user={user} handleOut={handleOut} />
+              <div >
+                <Task/>
+                <TaskList/>
+              </div>
+            </div>
           )}
         </div>
       ) : (
