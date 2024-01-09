@@ -10,7 +10,7 @@ const Profile = ({ user, handleOut }) => {
           </p>
           <img src={user.photoURL} className="rounded-circle image-size" />
         </div>
-        <div className="d-flex justify-content-end">
+        <div className="d-flex justify-content-end align-items-center">
           <button onClick={handleOut} className="btn btn-danger">
             LogOut
           </button>
