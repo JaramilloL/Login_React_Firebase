@@ -1,5 +1,5 @@
 //? Aqui se implementara la creacion de tareas para agregar la informacion en firebase storage
-import { collection, addDoc } from 'firebase/firestore'
+import { collection, addDoc } from "firebase/firestore";
 
 //* Usamo useForm para e control de losdatos del formuario
 import { useForm } from "react-hook-form";
@@ -15,7 +15,7 @@ const Task = () => {
     getValues,
   } = useForm();
 
-  const onSubmit = handleSubmit((data) => {
+  const onSubmite = handleSubmit((data) => {
     console.log(data);
     reset();
   });
@@ -23,31 +23,29 @@ const Task = () => {
   const { store } = useContext(UserContext); //extraemos el store de el almacenamiento
 
   //?contruimos una funcion para a;macenar los datos en firestore
-  const storeTask = async () =>{
-    const taskTitle = getValues('task');
-    const desciptions = getValues('descriptions');
+  const storeTask = async () => {
+    const taskTitle = getValues("task");
+    const desciptions = getValues("descriptions");
     try {
-      const storeRequest = await addDoc(collection(store, 'taskStore'), {
-        task : taskTitle,
+      const storeRequest = await addDoc(collection(store, "taskStore"), {
+        task: taskTitle,
         description: desciptions,
-      })
-      console.log("this is id of task" + storeRequest.id)
-
+      });
+      console.log("this is id of task" + storeRequest.id);
     } catch (error) {
       console.log(error);
     }
-  }
-
+  };
 
   return (
     <div className="form-control w-50 m-2">
       <form
         className="w-100  d-flex justify-content-evenly"
-        onSubmit={onSubmit}
+        onSubmit={onSubmite}
       >
         <div className="form-floating mb-3">
           <input
-            type="email"
+            type="text"
             className="form-control"
             id="floatingTask"
             placeholder="Task"
@@ -80,10 +78,15 @@ const Task = () => {
           <label htmlFor="floatingDesciptions">Descriptions</label>
         </div>
         {errors?.descriptions?.message}
+        <div className="d-flex justify-content-center">
+          <input
+            type="submit"
+            value="Create Task"
+            className="btn btn-primary"
+            onClick={storeTask}
+          />
+        </div>
       </form>
-      <div className="d-flex justify-content-center">
-        <input type="submit" value="Create Task" className="btn btn-primary" onClick={storeTask}/>
-      </div>
     </div>
   );
 };

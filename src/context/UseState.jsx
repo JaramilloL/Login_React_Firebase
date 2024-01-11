@@ -14,7 +14,6 @@ import {
   sendPasswordResetEmail,
 } from "firebase/auth";
 
-
 const UseState = ({ children }) => {
   //guardamos el esto del login en un estado para saber si este esta o no logeado
   const [user, setUser] = useState(null);
@@ -73,7 +72,7 @@ const UseState = ({ children }) => {
         loginNotAcces,
         loginGoogle,
         resetPassword,
-		store
+        store,
       }}
     >
       {children}
