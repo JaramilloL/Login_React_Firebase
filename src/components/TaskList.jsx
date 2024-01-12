@@ -71,9 +71,9 @@ const TaskList = () => {
   };
 
   return (
-    <div className="m-5">
+    <div className="w-50 m-auto mt-3">
       {data.map((task) => (
-        <div className="card" key={task.id}>
+        <div className="card m-1" key={task.id}>
           <div className="card-body">
             {
               //creamos una condicion para mostrar input nuevos para la edicion
@@ -83,10 +83,12 @@ const TaskList = () => {
                     type="text"
                     value={editTasks}
                     onChange={(e) => setEditTasks(e.target.value)}
+                    className="border m-2"
                   />
                   <textarea
                     value={editDescription}
                     onChange={(e) => setEditDescription(e.target.value)}
+                    className=" border m-2"
                   />
                 </>
               ) : (

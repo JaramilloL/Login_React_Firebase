@@ -38,7 +38,8 @@ const Task = () => {
   };
 
   return (
-    <div className="form-control w-50 m-2">
+    <div className="d-flex justify-content-center">
+      <div className="form-control w-50 m-2">
       <form
         className="w-100  d-flex justify-content-evenly"
         onSubmit={onSubmite}
@@ -78,7 +79,7 @@ const Task = () => {
           <label htmlFor="floatingDesciptions">Descriptions</label>
         </div>
         {errors?.descriptions?.message}
-        <div className="d-flex justify-content-center">
+        <div className="d-block justify-content-center m-auto">
           <input
             type="submit"
             value="Create Task"
@@ -87,6 +88,7 @@ const Task = () => {
           />
         </div>
       </form>
+    </div>
     </div>
   );
 };
